@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  python_sql:
+    image: mariadb:10.2
+    container_name: python_sql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "31234:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./conf.d:/etc/mysql/conf.d:ro
+    environment:
+      MYSQL_USER: Djony
+      MYSQL_PASSWORD: Djony
+      MYSQL_ROOT_PASSWORD: Djony
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    read_only: false
